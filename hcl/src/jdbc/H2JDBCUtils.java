@@ -49,6 +49,7 @@ public class H2JDBCUtils {
 	public static String preparedInsertSQL = "INSERT INTO employee (empID, empName, dob, salary, age) VALUES (?, ?, ?, ?, ?);";
 	public static String preparedSelectAll = "SELECT * FROM employee";
 	public static String preparedSelectById = "SELECT * FROM employee WHERE empId=?";
+	public static String preparedUpdateId = "UPDATE employee SET empId = ? WHERE empId=?";
 	public static String preparedUpdateNameById = "UPDATE employee SET empName = ? WHERE empId=?";
 	public static String preparedUpdateDobById = "UPDATE employee SET dob = ? WHERE empIid=?";
 	public static String preparedUpdateSalaryById = "UPDATE employee SET salary = ? WHERE empId=?";
