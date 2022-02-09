@@ -5,6 +5,8 @@ import java.util.Scanner;
 import java.util.function.Predicate;
 import java.sql.SQLException;
 
+import jdbc.Employee;
+
 public class H2CLI {
 	public static String menu = "MENU\n"
 			+ "Select:\n"
@@ -51,11 +53,17 @@ public class H2CLI {
 		return id;
 	}
 	
-	public static String requestName(Scanner kb) {
+	public static String requestField(Scanner kb) {
 		System.out.println(updateMenu);
 		String[] f = {"empId", "empName", "dob", "salary", "age"};
-		int choice = kb.nextInt();
-		return f[choice - 1];
+		int n = kb.nextInt();
+		return f[n - 1];
+	}
+	
+	public static String requestValue(Scanner kb, String field) {
+		kb.nextLine();
+		System.out.println("Enter new value for " + field + ": ");
+		return kb.nextLine();
 	}
 	
 	public static void displaySet(ResultSet s) throws SQLException{

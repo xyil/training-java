@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import jdbc.Employee;
+
 public class H2JDBCUtils {
 
 	private static String jdbcURL = "jdbc:h2:~/employee";
@@ -85,7 +87,7 @@ public class H2JDBCUtils {
 		ps.executeUpdate();
 	}
 	
-	public static Employee extractEmpRSRow(ResultSet rs) throws SQLException {
+	public static Employee extractEmpSet(ResultSet rs) throws SQLException {
 		int empId = rs.getInt("id");
 		String empName = rs.getString("name");
 		String dob = rs.getString("dob");

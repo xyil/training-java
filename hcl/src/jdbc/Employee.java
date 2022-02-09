@@ -17,7 +17,7 @@ public class Employee{
 			new Employee(1002, "Alex", "05/01/2000", 75, 22)
 			);
 	
-	public Employee(int empID, String empName, String dob, int salary, int age) {
+	public Employee(int empId, String empName, String dob, int salary, int age) {
 		super();
 		this.empId = empId;
 		this.empName = empName;
@@ -54,7 +54,7 @@ public class Employee{
 		return salary;
 	}
 	
-	public void setSalary() {
+	public void setSalary(int salary) {
 		this.salary = salary;
 	}
 	
