@@ -2,6 +2,8 @@ package jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class H2JDBCUtils {
@@ -42,8 +44,53 @@ public class H2JDBCUtils {
 			+ "`dob` VARCHAR(45) NULL, \n"
 			+ "`salary` INT NULL, \n"
 			+ "`age` INT NULL, \n"
-			+ "PRIMARY KEY (`id`));";
+			+ "PRIMARY KEY (`empId`));";
 	
-	public static String insertRecord = "INSERT INTO employee (empId, empName, dob, salary, age VALUES (?,?,?,?,?);";
+	public static String preparedInsertSQL = "INSERT INTO employee (empID, empName, dob, salary, age) VALUES (?, ?, ?, ?, ?);";
+	public static String preparedSelectAll = "SELECT * FROM employee";
+	public static String preparedSelectById = "SELECT * FROM employee WHERE empId=?";
+	public static String preparedUpdateNameById = "UPDATE employee SET empName = ? WHERE empId=?";
+	public static String preparedUpdateDobById = "UPDATE employee SET dob = ? WHERE empIid=?";
+	public static String preparedUpdateSalaryById = "UPDATE employee SET salary = ? WHERE empId=?";
+	public static String preparedUpdateAgeById = "UPDATE employee SET age = ? WHERE empId=?";
+	public static String preparedRemoveById = "DELETE FROM employee WHERE empId=?";
 	
+	static void addStarterData(Connection connection) throws SQLException {
+		PreparedStatement ps = connection.prepareStatement(preparedInsertSQL);
+		for (Employee e : Employee.employees) {
+			insertEmployee(ps, e);
+		}
+	}
+	
+	public static void insertEmployee(PreparedStatement ps, Employee e) throws SQLException {
+		ps.setInt(0, e.getId());
+		ps.setString(1, e.getName());
+		ps.setString(2, e.getDob());
+		ps.setInt(3, e.getSalary());
+		ps.setInt(4, e.getAge());
+		
+		ps.executeUpdate();
+	}
+	
+	public static void updateEmployee(PreparedStatement ps, String value, int empId) throws SQLException {
+		ps.setString(1, value);
+		ps.setInt(2, empId);
+		ps.executeUpdate();
+	}
+	
+	public static void removeEmpById(PreparedStatement ps, int empId) throws SQLException {
+		
+		ps.setInt(1, empId);
+		ps.executeUpdate();
+	}
+	
+	public static Employee extractEmpRSRow(ResultSet rs) throws SQLException {
+		int empId = rs.getInt("id");
+		String empName = rs.getString("name");
+		String dob = rs.getString("dob");
+		int salary = rs.getInt("salary");
+		int age = rs.getInt("age");
+
+		return new Employee(empId, empName, dob, salary, age);
+	}
 }
