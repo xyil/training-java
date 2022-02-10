@@ -33,8 +33,6 @@ public class EmployeeApp {
 			ResultSet rs;
 			int empId;
 			
-			
-
 			int n = 0;
 			while (n != 7) {
 				System.out.println(H2CLI.menu);

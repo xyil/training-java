@@ -3,6 +3,7 @@ package jdbc;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class Employee{
 	
 	private int empId;
@@ -65,4 +66,10 @@ public class Employee{
 	public void setAge(int age) {
 		this.age = age;
 	}
+	
+	@Override
+	public String toString() {
+		return "Employee [id=" + empId + ", name=" + empName + ", dob=" + dob + ", salary=" + salary + ", age=" + age + "]";
+	}
+
 }

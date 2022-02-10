@@ -15,7 +15,7 @@ public class H2CLI {
 			+ "3 retrieve employee record\n"
 			+ "4 update employee record\n"
 			+ "5 delete employee record\n"
-			+ "6 filter results"
+			+ "6 filter results\n"
 			+ "7 exit";
 	
 	public static String updateMenu = "Select a field to update\n"
